@@ -90,8 +90,8 @@ def main():
 
     args = zip(urls, filenames)
 
-    #prep()
-    #download_parallel(args)
+    prep()
+    download_parallel(args)
 
     #{"audio_filepath": "audio/nada_lily_21_haggard_0316.wav", 
     #"text": "awake ye kings", 
