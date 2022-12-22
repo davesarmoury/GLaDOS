@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import requests
 from multiprocessing import cpu_count
 from multiprocessing.pool import ThreadPool
@@ -9,6 +7,8 @@ from bs4 import BeautifulSoup
 import soundfile as sf
 import string
 import json
+import re
+import num2words
 
 class bcolors:
     HEADER = '\033[95m'
@@ -25,12 +25,19 @@ blocklist = ["potato", "_ding_", "00_part1_entry-6"]
 audio_dir = 'audio'
 download_threads = 64
 
-def prep():
-    if os.path.exists(audio_dir):
+def prep(args, overwrite=False):
+    already_exists = os.path.exists(audio_dir)
+    
+    if already_exists and not overwrite:
+        print("Data already downloaded")
+        return
+    
+    if already_exists:
         print("Deleting previously downloaded audio")
         shutil.rmtree(audio_dir)
 
     os.mkdir(audio_dir)
+    download_parallel(args)
 
 def remove_punctuation(str):
     return str.translate(str.maketrans('', '', string.punctuation))
@@ -64,7 +71,7 @@ def main():
     filenames = []
     texts = []
 
-    soup = BeautifulSoup(r.text, 'html.parser')
+    soup = BeautifulSoup(r.text.encode('utf-8').decode('ascii', 'ignore'), 'html.parser')
     for link_item in soup.find_all('a'):
         url = link_item.get("href", None)
         if url:
@@ -84,32 +91,37 @@ def main():
                             else:
                                 urls.append(url)
                                 filenames.append(filename)
+                                text = text.replace('*', '')
+                                text = re.sub(r"(\d+)", lambda x: num2words.num2words(int(x.group(0))), text)
                                 texts.append(text)
 
     print("Found " + str(len(urls)) + " urls")
 
     args = zip(urls, filenames)
 
-    prep()
-    download_parallel(args)
+    prep(args)
 
     #{"audio_filepath": "audio/nada_lily_21_haggard_0316.wav", 
     #"text": "awake ye kings", 
     #"duration": 1.3, 
     #"text_no_preprocessing": "\u201cAwake, ye kings,\u201d", 
     #"text_normalized": "\"Awake, ye kings,\""}
+    
+    total_audio_time = 0
     outFile=open(os.path.join(audio_dir, "manifest.json"), 'w')
     for i in range(len(urls)):
         item = {}
         text = texts[i]
         filename = filenames[i]
-        item["audio_filepath"] = filename
+        item["audio_filepath"] = os.path.join(audio_dir, filename)
         item["text_normalized"] = text
         item["text_no_preprocessing"] = text
         item["text"] = text.lower()
         item["duration"] = audio_duration(os.path.join(audio_dir, filename))
+        total_audio_time = total_audio_time + item["duration"]
         outFile.write(json.dumps(item, ensure_ascii=True, sort_keys=True) + "\n")
  
     outFile.close()
+    print(str(total_audio_time/60.0) + " min")
 
 main()
