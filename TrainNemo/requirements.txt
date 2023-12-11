@@ -1,5 +1,5 @@
 beautifulsoup4==4.11.1
-ipython==8.7.0
+ipython==8.10.0
 matplotlib==3.1.2
 nemo==4.3.2
 nemo_toolkit==1.13.0
