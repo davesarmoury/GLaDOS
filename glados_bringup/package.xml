@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>glados_bringup</name>
+  <version>0.0.0</version>
+  <description>The glados_bringup package</description>
+
+  <maintainer email="davesarmoury@gmail.com">Dave Niewinski</maintainer>
+
+  <license>CC-BY-3</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <exec_depend>glados_description</exec_depend>
+  <exec_depend>glados_riva</exec_depend>
+  <exec_depend>openai_ros</exec_depend>
+  <exec_depend>zed_wrapper</exec_depend>
+
+</package>
