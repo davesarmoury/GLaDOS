@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>glados_viz</name>
+  <version>0.0.0</version>
+  <description>The glados_viz package</description>
+
+  <author email="davesarmoury@gmail.com">Dave Niewinski</author>
+  <license>CC-BY-3</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <exec_depend>joint_state_publisher_gui</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>rviz</exec_depend>
+  <exec_depend>glados_description</exec_depend>
+
+  <export>
+  </export>
+</package>

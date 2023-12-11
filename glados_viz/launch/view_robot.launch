@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="rviz" type="rviz" name="rviz" respawn="false" output="screen"
+        args="-d $(find glados_viz)/rviz/robot.rviz"/>
+</launch>
