@@ -4,7 +4,8 @@
   <version>0.0.0</version>
   <description>The glados_viz package</description>
 
-  <author email="davesarmoury@gmail.com">Dave Niewinski</author>
+  <maintainer email="davesarmoury@gmail.com">Dave Niewinski</maintainer>
+
   <license>CC-BY-3</license>
 
   <buildtool_depend>catkin</buildtool_depend>

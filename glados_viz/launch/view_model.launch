@@ -1,5 +1,5 @@
 <launch>
-    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find glados_description)/xacro/glados.urdf.xacro'"/>
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find glados_description)/urdf/glados.urdf.xacro'"/>
 
     <node pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" name="joint_state_publisher_gui" />
 

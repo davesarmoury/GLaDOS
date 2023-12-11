@@ -63,16 +63,6 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        gripperMover:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        gripperStator:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
         link00:
           Alpha: 1
           Show Axes: false
@@ -108,7 +98,52 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        shop:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         world:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        zed2_baro_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        zed2_base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        zed2_camera_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        zed2_left_camera_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        zed2_left_camera_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        zed2_mag_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        zed2_right_camera_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        zed2_right_camera_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        zed2_temp_left_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        zed2_temp_right_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -120,6 +155,8 @@ Visualization Manager:
       Visual Enabled: true
     - Class: rviz/TF
       Enabled: false
+      Filter (blacklist): ""
+      Filter (whitelist): ""
       Frame Timeout: 15
       Frames:
         All Enabled: false
@@ -135,9 +172,9 @@ Visualization Manager:
       Value: false
   Enabled: true
   Global Options:
-    Background Color: 255; 255; 255
+    Background Color: 0; 0; 0
     Default Light: true
-    Fixed Frame: world
+    Fixed Frame: shop
     Frame Rate: 30
   Name: root
   Tools:
@@ -161,7 +198,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 1.0471363067626953
+      Distance: 2.3184406757354736
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -177,9 +214,9 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.4403982162475586
+      Pitch: 0.3302033841609955
       Target Frame: <Fixed Frame>
-      Yaw: 1.058566689491272
+      Yaw: 2.6703832149505615
     Saved: ~
 Window Geometry:
   Displays:
