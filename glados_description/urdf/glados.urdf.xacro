@@ -4,7 +4,7 @@
     <xacro:include filename="$(find z1_description)/xacro/robot.xacro"/>
 
     <link name="shop"/>
-    <joint name="shop_link" type="fixed">
+    <joint name="shop_joint" type="fixed">
         <origin xyz="0 0 0" rpy="3.14159 0 0" />
         <parent link="shop"/>
         <child link="world"/>
@@ -28,5 +28,44 @@
         rpy="$(arg cam_roll) $(arg cam_pitch) $(arg cam_yaw)"
     />
     </xacro:zed_camera>
+
+    <link name="head_link">
+        <visual>
+            <geometry>
+                <mesh filename="package://glados_description/meshes/g_head.dae"/>
+            </geometry>
+        </visual>
+    </link>
+    <joint name="head_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <parent link="link06"/>
+        <child link="head_link"/>
+    </joint>
+
+    <link name="midsection_link">
+        <visual>
+            <geometry>
+                <mesh filename="package://glados_description/meshes/g_mid.dae"/>
+            </geometry>
+        </visual>
+    </link>
+    <joint name="midsection_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <parent link="link03"/>
+        <child link="midsection_link"/>
+    </joint>
+
+    <link name="upper_link">
+        <visual>
+            <geometry>
+                <mesh filename="package://glados_description/meshes/g_upper.dae"/>
+            </geometry>
+        </visual>
+    </link>
+    <joint name="upper_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <parent link="link02"/>
+        <child link="upper_link"/>
+    </joint>
 
 </robot>
