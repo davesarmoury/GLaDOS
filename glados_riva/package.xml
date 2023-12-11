@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>glados_riva</name>
+  <version>0.0.0</version>
+  <description>The glados_riva package</description>
+
+  <maintainer email="davesarmoury@gmail.com">Dave Niewinski</maintainer>
+
+  <license>CC-BY-3</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+</package>
