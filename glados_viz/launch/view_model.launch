@@ -1,7 +1,17 @@
 <launch>
     <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find glados_description)/urdf/glados.urdf.xacro'"/>
 
-    <node pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" name="joint_state_publisher_gui" />
+    <node pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" name="joint_state_publisher_gui">
+
+    </node>
+
+    <rosparam>
+    joint_state_publisher_gui:
+        zeros:
+            joint2: 1.5
+            joint3: -1.2
+            joint4: -0.78
+    </rosparam>
 
     <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
         <param name="publish_frequency" type="double" value="1000.0"/>
