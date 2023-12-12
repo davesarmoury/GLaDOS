@@ -1,0 +1,12 @@
+# params/zed2i.yaml
+# Parameters for Stereolabs ZED 2i camera
+---
+
+general:
+    camera_model:               'zed2i'
+    grab_resolution:            'HD1080'     # 'HD2K', 'HD1080', 'HD720', 'VGA', 'AUTO'
+    grab_frame_rate:            30          # Frequency of frame grabbing for internal SDK operations
+
+depth:
+    min_depth:                  0.3         # Min: 0.3, Max: 3.0 - Default 0.7 - Note: reducing this value wil require more computational power and GPU memory
+    max_depth:                  15.0        # Max: 40.0

@@ -98,7 +98,7 @@ def main() -> None:
                 if sound_stream is not None:
                     sound_stream(resp.audio)
 
-                filename = text.translate(str.maketrans('', '', string.punctuation)) + ".wav"
+                filename = "/home/davesarmoury/" + text.translate(str.maketrans('', '', string.punctuation)) + ".wav"
                 filename = filename.replace(" ", "_")
                 out_f = wave.open(filename, 'wb')
                 out_f.setnchannels(nchannels)

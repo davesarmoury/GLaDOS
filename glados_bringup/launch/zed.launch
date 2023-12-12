@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="svo_file"             default="" /> <!-- <arg name="svo_file" default="path/to/svo/file.svo"> -->
+    <arg name="stream"               default="" /> <!-- <arg name="stream" default="<ip_address>:<port>"> -->
+
+    <arg name="node_name"            default="zed_node" />
+    <arg name="camera_model"         default="zed2i" />
+
+    <arg name="camera_name"          default="zed2i" />
+
+    <arg name="base_frame"           default="world" />
+
+    <arg name="cam_pos_x"             default="-0.5" /> <!-- Position respect to base frame (i.e. "base_link) -->
+    <arg name="cam_pos_y"             default="0.0" /> <!-- Position respect to base frame (i.e. "base_link) -->
+    <arg name="cam_pos_z"             default="0.5" /> <!-- Position respect to base frame (i.e. "base_link) -->
+    <arg name="cam_roll"              default="3.14159" /> <!-- Orientation respect to base frame (i.e. "base_link) -->
+    <arg name="cam_pitch"             default="0.0" /> <!-- Orientation respect to base frame (i.e. "base_link) -->
+    <arg name="cam_yaw"               default="0.0" /> <!-- Orientation respect to base frame (i.e. "base_link) -->
+
+    <arg name="camera_id"             default="0" />
+    <arg name="gpu_id"                default="-1" />
+
+    <node name="$(arg node_name)" pkg="zed_wrapper" type="zed_wrapper_node" output="screen" required="true"><!-- launch-prefix="valgrind" -->
+        <rosparam file="$(find glados_bringup)/params/common.yaml" command="load" />
+        <rosparam file="$(find glados_bringup)/params/$(arg camera_model).yaml" command="load" />
+
+        <param name="general/camera_name"               value="$(arg camera_name)" />
+        <param name="general/base_frame"                value="$(arg base_frame)" />
+        <param name="svo_file"                          value="$(arg svo_file)" />
+        <param name="stream"                            value="$(arg stream)" />
+        <param name="general/zed_id"                    value="$(arg camera_id)" />
+        <param name="general/gpu_id"                    value="$(arg gpu_id)" />
+    </node>
+</launch>
