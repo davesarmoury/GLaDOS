@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="glados_riva" type="glados_talk.py" name="glados_talk" args="--voice=GLaDOS --play-audio" />
+    <node pkg="glados_riva" type="transcribe_mic.py" args="" />
+</launch>
