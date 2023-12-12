@@ -1,3 +1,6 @@
 [submodule "zed-ros-wrapper"]
 	path = zed-ros-wrapper
 	url = https://github.com/stereolabs/zed-ros-wrapper
+[submodule "openai_ros"]
+	path = openai_ros
+	url = git@github.com:davesarmoury/openai_ros.git
