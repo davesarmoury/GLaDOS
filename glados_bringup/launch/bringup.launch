@@ -1,3 +1,11 @@
 <launch>
-    <include file="$(find glados_bringup)/launch/zed.launch"/>
+    <arg name="camera" default="true" />
+    <arg name="chat" default="true" />
+    <arg name="voice" default="true" />
+    <arg name="arm" default="false" />
+
+    <include file="$(find glados_bringup)/launch/zed.launch" if="$(arg camera)" />
+    <include file="$(find glados_bringup)/launch/openai.launch" if="$(arg chat)" />
+    <include file="$(find glados_bringup)/launch/riva.launch" if="$(arg voice)" />
+    <include file="$(find z1_bringup)/launch/real_arm.launch" if="$(arg arm)" />
 </launch>
