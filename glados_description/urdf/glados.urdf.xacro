@@ -15,7 +15,7 @@
     <xacro:arg name="base_frame"    default="world" />
     <xacro:arg name="cam_pos_x"     default="-0.5" />
     <xacro:arg name="cam_pos_y"     default="0.0" />
-    <xacro:arg name="cam_pos_z"     default="0.5" />
+    <xacro:arg name="cam_pos_z"     default="1.0" />
     <xacro:arg name="cam_roll"      default="3.14159" />
     <xacro:arg name="cam_pitch"     default="0.0" />
     <xacro:arg name="cam_yaw"       default="0.0" />
@@ -68,4 +68,17 @@
         <child link="upper_link"/>
     </joint>
 
+    <link name="eye_link" />
+    <joint name="eye_joint" type="fixed">
+        <origin xyz="0.32 0 0.07" rpy="0 -0.2 0" />
+        <parent link="link06"/>
+        <child link="eye_link"/>
+    </joint>
+
+    <link name="view_link" />
+    <joint name="view_joint" type="fixed">
+        <origin xyz="0 0 0.4" rpy="0 0 0" />
+        <parent link="world"/>
+        <child link="view_link"/>
+    </joint>
 </robot>

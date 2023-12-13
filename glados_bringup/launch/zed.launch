@@ -12,7 +12,7 @@
 
     <arg name="cam_pos_x"             default="-0.5" /> <!-- Position respect to base frame (i.e. "base_link) -->
     <arg name="cam_pos_y"             default="0.0" /> <!-- Position respect to base frame (i.e. "base_link) -->
-    <arg name="cam_pos_z"             default="0.5" /> <!-- Position respect to base frame (i.e. "base_link) -->
+    <arg name="cam_pos_z"             default="1.0" /> <!-- Position respect to base frame (i.e. "base_link) -->
     <arg name="cam_roll"              default="3.14159" /> <!-- Orientation respect to base frame (i.e. "base_link) -->
     <arg name="cam_pitch"             default="0.0" /> <!-- Orientation respect to base frame (i.e. "base_link) -->
     <arg name="cam_yaw"               default="0.0" /> <!-- Orientation respect to base frame (i.e. "base_link) -->
