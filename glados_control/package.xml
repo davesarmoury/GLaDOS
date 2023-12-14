@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>glados_control</name>
+  <version>0.0.0</version>
+  <description>The glados_control package</description>
+
+  <maintainer email="davesarmoury@gmail.com">Dave Niewinski</maintainer>
+
+  <license>CC-BY-3</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <exec_depend>tf</exec_depend>
+  <exec_depend>trac_ik_kinematics_plugin</exec_depend>
+  <exec_depend>zed_interfaces</exec_depend>
+
+</package>
