@@ -1,5 +1,6 @@
 <launch>
     <include file="$(find openai_ros)/launch/openai.launch">
         <arg name="model" value="gpt-3.5-turbo" />
+        <arg name="max_tokens" default="1024" />
     </include>
 </launch>

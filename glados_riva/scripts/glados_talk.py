@@ -85,27 +85,35 @@ def main() -> None:
         rate = rospy.Rate(2)
         while not rospy.is_shutdown():
             if TTS != None:
-                text = TTS
+                text_list = [TTS]
+                
+                if len(TTS) >= 400:
+                    text_list = TTS.split(".")
+                
+                for t in text_list:
+                    text = t.rstrip().lstrip()
+                    if len(text) < 1:
+                        continue
 
-                rospy.loginfo("Generating audio for request...")
-                rospy.loginfo(text)
-                start = time.time()
+                    rospy.loginfo("Generating audio for request...")
+                    rospy.loginfo("< " + text + " >")
+                    start = time.time()
 
-                resp = service.synthesize(text, args.voice, args.language_code, sample_rate_hz=args.sample_rate_hz)
-                stop = time.time()
-                rospy.loginfo("Time spent: " + str(stop - start) + "s")
+                    resp = service.synthesize(text, args.voice, args.language_code, sample_rate_hz=args.sample_rate_hz)
+                    stop = time.time()
+                    rospy.loginfo("Time spent: " + str(stop - start) + "s")
 
-                if sound_stream is not None:
-                    sound_stream(resp.audio)
+                    if sound_stream is not None:
+                        sound_stream(resp.audio)
 
-                filename = "/home/davesarmoury/" + text.translate(str.maketrans('', '', string.punctuation)) + ".wav"
-                filename = filename.replace(" ", "_")
-                out_f = wave.open(filename, 'wb')
-                out_f.setnchannels(nchannels)
-                out_f.setsampwidth(sampwidth)
-                out_f.setframerate(args.sample_rate_hz)
-                out_f.writeframesraw(resp.audio)
-                out_f.close()
+                    filename = "/home/davesarmoury/" + str(start) + "_" + text.translate(str.maketrans('', '', string.punctuation)) + ".wav"
+                    filename = filename.replace(" ", "_")
+                    out_f = wave.open(filename, 'wb')
+                    out_f.setnchannels(nchannels)
+                    out_f.setsampwidth(sampwidth)
+                    out_f.setframerate(args.sample_rate_hz)
+                    out_f.writeframesraw(resp.audio)
+                    out_f.close()
 
                 TTS = None
 

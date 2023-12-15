@@ -24,8 +24,8 @@ def det_callback(msg):
                 min_distance = len
 
         o_mtx = compose_matrix(translate=[o.position[0], o.position[1], o.position[2]])
-        o_mtx = np.matmul(world_to_cam, o_mtx)
-        scale, shear, angles, translate, perspective = decompose_matrix(o_mtx)
+        world_to_o = np.matmul(world_to_cam, o_mtx)
+        scale, shear, angles, translate, perspective = decompose_matrix(world_to_o)
 
         horizontal_distance = math.sqrt(translate[0]*translate[0] + translate[1]*translate[1])
         yaw = math.atan2(translate[1], translate[0])
@@ -64,7 +64,7 @@ def main():
     last_pos = compose_matrix(translate=trans, angles=euler_from_quaternion(rot))
 
     rospy.loginfo(last_pos)
-    
+
     rospy.Subscriber("/zed_node/obj_det/objects", ObjectsStamped, det_callback)
 
     rospy.spin()
