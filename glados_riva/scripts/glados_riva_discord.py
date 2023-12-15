@@ -65,8 +65,23 @@ def parse_args() -> argparse.Namespace:
 def replace_numbers(text):
     return re.sub(r"(\d+)", lambda x: num2words.num2words(int(x.group(0))), text)
 
+if not os.path.exists(save_dir):
+    os.mkdir(save_dir)
+
+args = parse_args()
+if args.list_devices:
+    riva.client.audio_io.list_output_devices()
+    exit()
+
+auth = riva.client.Auth(args.ssl_cert, args.use_ssl, args.server)
+service = riva.client.SpeechSynthesisService(auth)
+
 @client.event
 async def on_message(message):
+    nchannels = 1
+    sampwidth = 2
+    sound_stream, out_f = None, None
+
     if message.author == client.user:
         return
 
@@ -78,15 +93,13 @@ async def on_message(message):
         for u in message.mentions:
             cleaned_msg = cleaned_msg.replace("@" + u.display_name, "")
 
-
         cleaned_msg = cleaned_msg.replace('\n', ' ')          # Remove line-breaks
         cleaned_msg = replace_numbers(cleaned_msg)            # Make digits into text
         cleaned_msg = re.sub(' +', ' ', cleaned_msg)          # Unnecessary white space
         
-        if len(cleaned_msg > 400):
+        if len(cleaned_msg) > 400:
             await message.reply("I can't say that.  The current character limit is 400.  Note: numbers are expanded into text")
         else:
-            sound_stream = None
             try:
                 if args.output_device is not None or args.play_audio:
                     sound_stream = riva.client.audio_io.SoundCallBack(
@@ -119,19 +132,5 @@ async def on_message(message):
 
             file = discord.File(filename)
             await message.reply(content=message.clean_content, file=file)
-
-if not os.path.exists(save_dir):
-    os.mkdir(save_dir)
-
-args = parse_args()
-if args.list_devices:
-    riva.client.audio_io.list_output_devices()
-    exit()
-
-auth = riva.client.Auth(args.ssl_cert, args.use_ssl, args.server)
-service = riva.client.SpeechSynthesisService(auth)
-nchannels = 1
-sampwidth = 2
-sound_stream, out_f = None, None
 
 client.run(TOKEN)
