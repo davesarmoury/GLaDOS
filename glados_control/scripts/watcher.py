@@ -20,10 +20,10 @@ def det_callback(msg):
         closest_obj = None
 
         for o in msg.objects:
-            len = np.linalg.norm(np.array([o.position[0], o.position[1], o.position[2]])) # Technically closest to the camera, but meh
-            if len < min_distance:
+            length = np.linalg.norm(np.array([o.position[0], o.position[1], o.position[2]])) # Technically closest to the camera, but meh
+            if length < min_distance:
                 closest_obj = o
-                min_distance = len
+                min_distance = length
 
         o_mtx = compose_matrix(translate=[o.position[0], o.position[1], o.position[2]])
         world_to_o = np.matmul(world_to_cam, o_mtx)
@@ -55,8 +55,8 @@ def main():
 
     listener = tf.TransformListener()
 
-    listener.waitForTransform('world', 'zed2_left_camera_frame', rospy.Time(0), rospy.Duration(0.5))
-    trans, rot = listener.lookupTransform('world', 'zed2_left_camera_frame', rospy.Time(0))
+    listener.waitForTransform('world', 'zed2i_left_camera_frame', rospy.Time(0), rospy.Duration(0.5))
+    trans, rot = listener.lookupTransform('world', 'zed2i_left_camera_frame', rospy.Time(0))
     world_to_cam = compose_matrix(translate=trans, angles=euler_from_quaternion(rot))
 
     listener.waitForTransform('world', 'view_link', rospy.Time(0), rospy.Duration(0.5))
@@ -68,7 +68,7 @@ def main():
 #    trans, rot = listener.lookupTransform('world', 'eye_link', rospy.Time(0))
 #    last_pos = compose_matrix(translate=trans, angles=euler_from_quaternion(rot))
 
-    rospy.loginfo(last_pos)
+#    rospy.loginfo(last_pos)
 
     rospy.Subscriber("/zed_node/obj_det/objects", ObjectsStamped, det_callback)
 
