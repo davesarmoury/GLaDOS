@@ -8,6 +8,8 @@ Panels:
         - /Status1
         - /RobotModel1/Links1
         - /TF1/Frames1
+        - /DepthCloud1
+        - /DepthCloud1/Auto Size1
       Splitter Ratio: 0.6125907897949219
     Tree Height: 719
   - Class: rviz/Selection
@@ -27,7 +29,7 @@ Panels:
   - Class: rviz/Time
     Name: Time
     SyncMode: 0
-    SyncSource: ""
+    SyncSource: DepthCloud
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -63,6 +65,10 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
+        eye_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         head_link:
           Alpha: 1
           Show Axes: false
@@ -117,48 +123,36 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        view_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         world:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        zed2_baro_link:
+        zed2i_base_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        zed2_base_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        zed2_camera_center:
+        zed2i_camera_center:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        zed2_left_camera_frame:
+        zed2i_left_camera_frame:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        zed2_left_camera_optical_frame:
+        zed2i_left_camera_optical_frame:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        zed2_mag_link:
+        zed2i_right_camera_frame:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        zed2_right_camera_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        zed2_right_camera_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        zed2_temp_left_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        zed2_temp_right_link:
+        zed2i_right_camera_optical_frame:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -185,6 +179,56 @@ Visualization Manager:
         {}
       Update Interval: 0
       Value: false
+    - Alpha: 1
+      Auto Size:
+        Auto Size Factor: 1
+        Value: true
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz/DepthCloud
+      Color: 255; 255; 255
+      Color Image Topic: /zed_node/left/image_rect_color
+      Color Transformer: RGB8
+      Color Transport Hint: raw
+      Decay Time: 0
+      Depth Map Topic: /zed_node/depth/depth_registered
+      Depth Map Transport Hint: raw
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Min Color: 0; 0; 0
+      Name: DepthCloud
+      Occlusion Compensation:
+        Occlusion Time-Out: 30
+        Value: false
+      Position Transformer: XYZ
+      Queue Size: 5
+      Selectable: true
+      Size (Pixels): 3
+      Style: Flat Squares
+      Topic Filter: true
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: true
+    - Class: rviz_plugin_zed_od/ZedOdDisplay
+      Enabled: true
+      Joint Radius: 0.10000000149011612
+      Label Scale: 5
+      Link Size: 0.05000000074505806
+      Name: ZedOdDisplay
+      Queue Size: 10
+      Show Bounding Boxes: true
+      Show Labels: true
+      Show Skeletons: true
+      Topic: /zed_node/obj_det/objects
+      Transparency: 0.25
+      Unreliable: false
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 255; 192; 192
@@ -213,7 +257,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 2.5236268043518066
+      Distance: 4.542481422424316
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -221,17 +265,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: 0.6907101273536682
-        Y: 0.02027750015258789
-        Z: -0.5839651823043823
+        X: 2.5566468238830566
+        Y: -0.2044447362422943
+        Z: -1.9683701992034912
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.04993196949362755
+      Pitch: 0.6649321913719177
       Target Frame: <Fixed Frame>
-      Yaw: 0.5201765298843384
+      Yaw: 2.7701847553253174
     Saved: ~
 Window Geometry:
   Displays:
