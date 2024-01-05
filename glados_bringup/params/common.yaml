@@ -23,7 +23,7 @@ general:
     zed_id:                     0
     serial_number:              0
     gpu_id:                     -1
-    base_frame:                 'base_link'                     # must be equal to the frame_id used in the URDF file
+    base_frame:                 'world'                         # must be equal to the frame_id used in the URDF file
     sdk_verbose:                1                               # Set verbose level of the ZED SDK
     svo_compression:            2                               # `0`: LOSSLESS, `1`: AVCHD, `2`: HEVC
     self_calib:                 true                            # enable/disable self calibration at starting
@@ -35,7 +35,7 @@ general:
     region_of_interest:         '[]'                            # A polygon defining the ROI where the ZED SDK perform the processing ignoring the rest. Coordinates must be normalized to '1.0' to be resolution independent.
 
 depth:
-    depth_mode:                 'ULTRA'                         # 'NONE', 'PERFORMANCE', 'QUALITY', 'ULTRA', 'NEURAL'
+    depth_mode:                 'PERFORMANCE'                   # 'NONE', 'PERFORMANCE', 'QUALITY', 'ULTRA', 'NEURAL'
     depth_stabilization:        1                               # [0-100] - 0: Disabled
     openni_depth_mode:          false                           # 'false': 32bit float meter units, 'true': 16bit uchar millimeter units
 
@@ -71,16 +71,16 @@ mapping:
 sensors:
     sensors_timestamp_sync:     false                           # Synchronize Sensors messages timestamp with latest received frame
     max_pub_rate:               400.                            # max frequency of publishing of sensors data. MAX: 400. - MIN: grab rate
-    publish_imu_tf:             true                            # publish `IMU -> <cam_name>_left_camera_frame` TF
+    publish_imu_tf:             false                           # publish `IMU -> <cam_name>_left_camera_frame` TF
 
 object_detection:
     od_enabled:                         true                            # True to enable Object Detection [not available for ZED]
     model:                              'MULTI_CLASS_BOX_ACCURATE'      # 'MULTI_CLASS_BOX_FAST', 'MULTI_CLASS_BOX_MEDIUM', 'MULTI_CLASS_BOX_ACCURATE', 'PERSON_HEAD_BOX_FAST', 'PERSON_HEAD_BOX_ACCURATE'
-    max_range:                          15.                             # Maximum detection range
+    max_range:                          5.                              # Maximum detection range
     allow_reduced_precision_inference:  true                            # Allow inference to run at a lower precision to improve runtime and memory usage
     prediction_timeout:                 0.5                             #  During this time [sec], the object will have OK state even if it is not detected. Set this parameter to 0 to disable SDK predictions            
-    object_tracking_enabled:            true                            # Enable/disable the tracking of the detected objects
-    mc_people:                          true                           # Enable/disable the detection of persons for 'MULTI_CLASS_BOX_X' models
+    object_tracking_enabled:            false                           # Enable/disable the tracking of the detected objects
+    mc_people:                          true                            # Enable/disable the detection of persons for 'MULTI_CLASS_BOX_X' models
     mc_vehicle:                         false                           # Enable/disable the detection of vehicles for 'MULTI_CLASS_BOX_X' models
     mc_bag:                             false                           # Enable/disable the detection of bags for 'MULTI_CLASS_BOX_X' models
     mc_animal:                          false                           # Enable/disable the detection of animals for 'MULTI_CLASS_BOX_X' models
