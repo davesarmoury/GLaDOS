@@ -10,6 +10,8 @@ import math
 
 HEAD_DISTANCE = 0.6
 
+limits = [ [-1.57, 1.57], [1.76, 2.50], [-1.76, -0.50], [0.90, 0.90], [-0.10, 0.10], [-3.14, 3.14] ]
+
 def det_callback(msg):
     global broadcaster, world_to_cam, view_to_world, world_to_view, last_pos
 
