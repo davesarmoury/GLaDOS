@@ -11,7 +11,7 @@ import math
 HEAD_DISTANCE = 0.6
 
 def det_callback(msg):
-    global broadcaster, world_to_cam, world_to_view, last_pos
+    global broadcaster, world_to_cam, view_to_world, world_to_view, last_pos
 
     if len(msg.objects) > 0:
         min_distance = 99999.0
@@ -25,7 +25,8 @@ def det_callback(msg):
 
         o_mtx = compose_matrix(translate=[o.position[0], o.position[1], o.position[2]])
         world_to_o = np.matmul(world_to_cam, o_mtx)
-        scale, shear, angles, translate, perspective = decompose_matrix(world_to_o)
+        view_to_o = np.matmul(view_to_world, world_to_o)
+        scale, shear, angles, translate, perspective = decompose_matrix(view_to_o)
 
         horizontal_distance = math.sqrt(translate[0]*translate[0] + translate[1]*translate[1])
         yaw = math.atan2(translate[1], translate[0])
@@ -34,18 +35,19 @@ def det_callback(msg):
         t_mtx = compose_matrix(angles=[0,pitch,yaw])
 
         t_mtx = np.matmul(t_mtx, h_mtx)
+        t_mtx = np.matmul(world_to_view, t_mtx)
+
         scale, shear, angles2, translate2, perspective = decompose_matrix(t_mtx)
         quat = quaternion_from_euler(angles2[0], angles2[1], angles2[2])
-
 
         broadcaster.sendTransform(translate2,
                         quat,
                         rospy.Time.now(),
                         "target_" + str(o.label_id),
-                        "spray_origin_link")
+                        "world")
 
 def main():
-    global broadcaster, world_to_cam, world_to_view, last_pos
+    global broadcaster, world_to_cam, view_to_world, world_to_view, last_pos
     rospy.init_node('glados_watcher')
     broadcaster = tf.TransformBroadcaster()
 
@@ -58,10 +60,11 @@ def main():
     listener.waitForTransform('world', 'view_link', rospy.Time(0), rospy.Duration(0.5))
     trans, rot = listener.lookupTransform('world', 'view_link', rospy.Time(0))
     world_to_view = compose_matrix(translate=trans, angles=euler_from_quaternion(rot))
+    view_to_world = np.linalg.inv(world_to_view)
 
-    listener.waitForTransform('world', 'eye_link', rospy.Time(0), rospy.Duration(0.5))
-    trans, rot = listener.lookupTransform('world', 'eye_link', rospy.Time(0))
-    last_pos = compose_matrix(translate=trans, angles=euler_from_quaternion(rot))
+#    listener.waitForTransform('world', 'eye_link', rospy.Time(0), rospy.Duration(0.5))
+#    trans, rot = listener.lookupTransform('world', 'eye_link', rospy.Time(0))
+#    last_pos = compose_matrix(translate=trans, angles=euler_from_quaternion(rot))
 
     rospy.loginfo(last_pos)
 

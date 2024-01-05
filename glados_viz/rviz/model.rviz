@@ -63,6 +63,10 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
+        eye_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         head_link:
           Alpha: 1
           Show Axes: false
@@ -117,6 +121,10 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        view_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         world:
           Alpha: 1
           Show Axes: false
@@ -185,6 +193,20 @@ Visualization Manager:
         {}
       Update Interval: 0
       Value: false
+    - Class: rviz_plugin_zed_od/ZedOdDisplay
+      Enabled: true
+      Joint Radius: 0.10000000149011612
+      Label Scale: 5
+      Link Size: 0.05000000074505806
+      Name: ZedOdDisplay
+      Queue Size: 10
+      Show Bounding Boxes: true
+      Show Labels: true
+      Show Skeletons: true
+      Topic: ""
+      Transparency: 0.25
+      Unreliable: false
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 255; 192; 192

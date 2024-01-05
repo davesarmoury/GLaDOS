@@ -13,11 +13,11 @@
     <xacro:arg name="camera_name"   default="zed2" />
     <xacro:arg name="camera_model"  default="zed2" />
     <xacro:arg name="base_frame"    default="world" />
-    <xacro:arg name="cam_pos_x"     default="-0.5" />
+    <xacro:arg name="cam_pos_x"     default="0.1" />
     <xacro:arg name="cam_pos_y"     default="0.0" />
-    <xacro:arg name="cam_pos_z"     default="1.0" />
+    <xacro:arg name="cam_pos_z"     default="-0.025" />
     <xacro:arg name="cam_roll"      default="3.14159" />
-    <xacro:arg name="cam_pitch"     default="0.0" />
+    <xacro:arg name="cam_pitch"     default="-0.78539816339" />
     <xacro:arg name="cam_yaw"       default="0.0" />
     <xacro:arg name="gnss_frame"    default="" />
 
