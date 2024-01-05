@@ -86,10 +86,10 @@ def main() -> None:
         while not rospy.is_shutdown():
             if TTS != None:
                 text_list = [TTS]
-                
+
                 if len(TTS) >= 400:
                     text_list = TTS.split(".")
-                
+
                 for t in text_list:
                     text = t.rstrip().lstrip()
                     if len(text) < 1:
