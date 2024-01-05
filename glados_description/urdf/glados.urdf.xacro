@@ -10,8 +10,8 @@
         <child link="world"/>
     </joint>
 
-    <xacro:arg name="camera_name"   default="zed2" />
-    <xacro:arg name="camera_model"  default="zed2" />
+    <xacro:arg name="camera_name"   default="zed2i" />
+    <xacro:arg name="camera_model"  default="zed2i" />
     <xacro:arg name="base_frame"    default="world" />
     <xacro:arg name="cam_pos_x"     default="0.1" />
     <xacro:arg name="cam_pos_y"     default="0.0" />
