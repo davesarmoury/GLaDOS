@@ -4,14 +4,14 @@
     <arg name="coordinator" default="false" />
     <arg name="arm" default="false" />
     <arg name="description" default="true" />
+    <arg name="watcher" default="true" />
 
     <include file="$(find glados_bringup)/launch/zed.launch" if="$(arg camera)" />
     <include file="$(find glados_bringup)/launch/openai.launch" if="$(arg chat)" />
     <node name="coordinator" pkg="glados_control" type="coordinator.py" if="$(arg coordinator)" />
+    <node name="watcher" pkg="glados_control" type="watcher.py" if="$(arg watcher)" />
 
-    <include file="$(find z1_bringup)/launch/real_arm.launch" if="$(arg arm)" >
-        <arg name="description" value="false" />
-    </include>
+    <include file="$(find glados_bringup)/launch/arm.launch" if="$(arg arm)" />
 
     <include file="$(find glados_description)/launch/description.launch" if="$(arg description)" />
 </launch>
