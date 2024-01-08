@@ -1,6 +1,6 @@
 <launch>
     <include file="$(find z1_bringup)/launch/real_arm.launch" >
         <arg name="description" value="false" />
-        <arg name="UnitreeGripperYN" value="true"/>
+        <arg name="UnitreeGripperYN" value="false"/>
     </include>
 </launch>
