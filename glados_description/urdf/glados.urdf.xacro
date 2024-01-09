@@ -77,7 +77,7 @@
 
     <link name="view_link" />
     <joint name="view_joint" type="fixed">
-        <origin xyz="0 0 0.4" rpy="0 0 0" />
+        <origin xyz="0 0 0.55" rpy="0 0 0" />
         <parent link="world"/>
         <child link="view_link"/>
     </joint>
