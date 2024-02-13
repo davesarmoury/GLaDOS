@@ -1,9 +1,8 @@
-beautifulsoup4==4.11.1
-ipython==8.10.0
-matplotlib==3.1.2
-nemo==4.3.2
-nemo_toolkit==1.13.0
-num2words==0.5.12
-requests==2.31.0
-soundfile==0.11.0
-torch==1.13.1
+beautifulsoup4
+ipython
+matplotlib
+nemo_toolkit
+num2words
+requests
+soundfile
+torch
