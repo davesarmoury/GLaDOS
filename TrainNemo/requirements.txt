@@ -6,3 +6,4 @@ num2words
 requests
 soundfile
 torch
+cython
