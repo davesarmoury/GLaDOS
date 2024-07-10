@@ -35,8 +35,8 @@ You can download the Riva files from [HERE](https://huggingface.co/DavesArmoury/
     pip3 install whl
     pip3 install nemo2riva==2.13.1
 
-    nemo2riva --out hifigan.riva hifigan.nemo --key None
-    nemo2riva --out fastpitch.riva fastpitch.nemo --key None
+    nemo2riva --out hifigan.riva hifigan.nemo --key tlt_encode
+    nemo2riva --out fastpitch.riva fastpitch.nemo --key tlt_encode
 
 #### Deploy Models
 
