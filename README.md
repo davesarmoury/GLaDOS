@@ -1,5 +1,7 @@
 # GLaDOS
 
+[<img src="https://img.youtube.com/vi/yNcKTZsHyfA/0.jpg">](https://youtu.be/yNcKTZsHyfA)
+
 ## LLM
 
     git clone --depth=1 https://github.com/dusty-nv/jetson-containers
